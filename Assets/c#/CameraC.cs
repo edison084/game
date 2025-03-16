@@ -14,6 +14,9 @@ public class CameraC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector2(pig.transform.position.x,pig.transform.position.y);
+        if (Pig.live)
+        {
+            transform.position = new Vector2(pig.transform.position.x, pig.transform.position.y);
+        }
     }
 }

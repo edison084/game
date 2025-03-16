@@ -7,6 +7,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class Pig : MonoBehaviour
 {
+    public GameObject super;
     public GameObject hphp;
     public List<GameObject> que;
     public TextMeshProUGUI fui;
@@ -114,9 +115,10 @@ public class Pig : MonoBehaviour
             fd = false;
             StartCoroutine(F());
         }
-        if (hp.transform.localScale.x <= 0)
+        if ((hp.transform.localScale.x <= 0 || transform.position.y<-10) && live)
         {
             pigr.constraints = RigidbodyConstraints2D.None;
+            Instantiate(super, transform.position, Quaternion.identity);
             live = false;
         }
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isground)
@@ -157,6 +159,7 @@ public class Pig : MonoBehaviour
                 StartCoroutine(Ques(Corrert));
                 q = 0;
                 hphp.transform.localScale = new Vector3(0, 0.1111f, 0);
+                fui.text = "jump and then jump(F):Done";
             }
             hp.transform.localScale -= new Vector3(lo, 0, 0);
         }
